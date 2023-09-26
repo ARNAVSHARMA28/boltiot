@@ -36,7 +36,27 @@ def operate():
             But in order to access main we have to travel in this "daily -> weather -> main" fashion which you can see in the openweathermap api documentation. 
         """
       
-        if main == "Clouds" or main == "Drizzle" or main == "Snow" or main == "Rain":
+        if main == "Hot sun" or main == "Heat waves" or main == "Humidity":
+                print("Stay indoors or travel by car")
+                response = mybolt.digitalWrite('0', 'HIGH')
+                print("Making request to Twilio to send a SMS")
+                res = sms.send_sms("Rainfall Expected. Take umbrella and raincoat with you.")
+                print("Response from twilio is" + str(res))
+                print("status of sms at twilio is :" + str(res.status))
+                time.sleep(3)
+                response = mybolt.digitalWrite('0', 'LOW')
+         
+         elif main == "Storm" or main == "Winds":
+                print("Do not go outside.")
+                response = mybolt.digitalWrite('0', 'HIGH')
+                print("Making request to Twilio to send a SMS")
+                res = sms.send_sms("Rainfall Expected. Take umbrella and raincoat with you.")
+                print("Response from twilio is" + str(res))
+                print("status of sms at twilio is :" + str(res.status))
+                time.sleep(3)
+                response = mybolt.digitalWrite('0', 'LOW')
+          
+          elif main == "Clouds" or main == "Drizzle" or main == "Snow" or main == "Rain":
                 print("Take umbrella and raincoat with you.")
                 response = mybolt.digitalWrite('0', 'HIGH')
                 print("Making request to Twilio to send a SMS")
